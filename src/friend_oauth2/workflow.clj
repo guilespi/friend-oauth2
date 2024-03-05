@@ -37,7 +37,8 @@
     (log/debug "access-token-uri:" access-token-uri)
     (log/debug "post args: " post-args)
     (token-parse-fn
-      (client/post (:url access-token-uri) post-args))))
+     (client/post (:url access-token-uri) (merge post-args
+                                                 {:insecure? true})))))
 
 (defn- redirect-to-provider!
   "Redirects user to OAuth2 provider.
